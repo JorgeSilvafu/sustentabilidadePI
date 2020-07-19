@@ -67,11 +67,22 @@ body{background-color: #adbccd;}
   margin-left: 160px;
   padding: 10px 10px;
 }
-#respond {
+#addUser {
+  margin-bottom: 20px;
+}
+#addUser button {
+  background-color: #eadbd4 ;
+  color: #0f1225;
+  width: 180px;
+  height: 30px;
+  border-radius: 10px;
+}
+
+#users {
   background-color: #0f1225;
-  width: 32%;
+  width: 90%;
   margin: auto;
-  padding: 0 20px 20px;
+  padding: 20px;
   border-top: 20px;
   display: flex;
   flex-direction: column;
@@ -79,9 +90,9 @@ body{background-color: #adbccd;}
   color: #eadbd4;
   border-radius: 10px;
 }
-#respond input[type='text'],
-#respond input[type='email'],
-#respond textarea {
+#users input[type='text'],
+#users input[type='email'],
+#users textarea {
   margin-bottom: 10px;
   width: 100%;
 }

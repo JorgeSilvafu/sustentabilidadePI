@@ -5,4 +5,8 @@ const contentSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-})
+});
+
+const Content = mongoose.model('contents', contentSchema);
+
+module.exports = Content;

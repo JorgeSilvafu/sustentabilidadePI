@@ -1,0 +1,27 @@
+{
+  "name": "sustentabilidadepi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JorgeSilvafu/sustentabilidadePI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JorgeSilvafu/sustentabilidadePI/issues"
+  },
+  "homepage": "https://github.com/JorgeSilvafu/sustentabilidadePI#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.9.25"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.4"
+  }
+}

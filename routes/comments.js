@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Comment = require('../models/comment');
 
-
-
 // @route GET /comments/getComments
 // @desc Get All Comments
 // @access Private

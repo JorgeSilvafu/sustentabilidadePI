@@ -7,7 +7,6 @@ body{background-color: #adbccd;}
   border: none;
 }
 
-
 .nav {
   height: 100%;
   width: 160px;
@@ -45,7 +44,6 @@ body{background-color: #adbccd;}
   font-weight: bold;
 }
 
-
 .header {
   display: flex;
   justify-content: space-around;
@@ -65,54 +63,32 @@ body{background-color: #adbccd;}
   display: block;
 }
 
-
 .main {
   margin-left: 160px;
-  padding: 0px 10px;
+  padding: 10px 10px;
 }
-
-.center{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  border: 10px;
-}
-
-
-.container {
+#respond {
+  background-color: #0f1225;
+  width: 15%;
+  padding: 20px;
+  border-top: 20px;
   display: flex;
-  justify-content: space-between;
-  padding: 10px 0px 0px;
-  font-size: 18px;
+  flex-direction: column;
+  color: #eadbd4;
+  border-radius: 10px;
 }
-
-.sust{
-  float: left;
-  padding: 0px 10px 0px 0px;
+#respond input[type='password'],
+#respond input[type='email'],
+#respond textarea {
+  margin-bottom: 10px;
+  width: 100%;
 }
-.sust a{
-  font-size: 22px;
-  color: #0f1225;
+.center{
+    margin: auto;
 }
-
-.trab {
-  border-left: 2px solid white;
-  padding: 0px 10px;
+.center button{
+    border-radius: 4px;
 }
-.trab a{
-  font-size: 22px;
-  color: #0f1225;
-}
-
-.cont{
-  border-left: 2px solid white;
-  padding: 0px 10px;
-}
-.cont a{
-  font-size: 22px;
-  color: #0f1225;
-}
-
 
 .footer {
   margin-left: 160px;

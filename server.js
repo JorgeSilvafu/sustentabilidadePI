@@ -1,17 +1,16 @@
 const express = require('express');
+const bodyParser = require("body-parser");
+const app = express();
 const mongoose = require('mongoose');
 const uri = require("./config/keys").mongoURI;
-const app = express();
-const db = mongoose.connection;
 
 const users = require('./routes/users');
 const comments = require('./routes/comments');
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("www"));
 app.use(express.json());
-
-//Routes
-app.use('/users', users);
-app.use('/comments', comments);
 
 // Connect to MongoDB
 mongoose
@@ -28,4 +27,9 @@ mongoose
 mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
 
-app.listen(3000, () => console.log('Server inciciado'));
+//Routes
+app.use('/users', users);
+app.use('/comments', comments);
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log('Server inciciado no port ' + PORT));

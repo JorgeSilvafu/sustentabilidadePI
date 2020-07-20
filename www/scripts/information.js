@@ -17,11 +17,14 @@ function Information(id) {
     this.contents = [];
 };
 
+/**
+ * 
+ */
 Information.prototype.getUsers = function () {
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
     xhr.open('GET', '/users');
-    const self = this;
+    let self = this;
     xhr.onreadystatechange = function () {
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
             this.response.user.forEach(p => {
@@ -31,9 +34,6 @@ Information.prototype.getUsers = function () {
     };
     xhr.send();
 };
-
-
-
 
 /**
  * Cria dinamicamente uma tabela com a informação dos utilizadores
@@ -60,9 +60,8 @@ Information.prototype.showUsers = function () {
         }
     }
 
-    function newUserEventHandler() {
+    function createUserEventHandler() {
         replaceChilds('divTable', document.createElement('div'));
-        document.getElementById('formUser').action = 'javascript:info.processingUser("create");';
         document.getElementById('formUser').style.display = 'block';
         document.getElementById('formUser').reset();
     }
@@ -78,18 +77,18 @@ Information.prototype.showUsers = function () {
         }
         if (idUser) {
             replaceChilds('divTable', document.createElement('div'));
-            document.getElementById('formUser').action = 'javascript:info.processingUser("update");';
+            //document.getElementById('formUser').action = 'javascript:info.processingUser("update");';
             document.getElementById('formUser').style.display = 'block';
             document.getElementById('formUser').reset();
             document.getElementById('id').value = idUser;
-            const User = self.people.find(i => i.id === idUser);
-            document.getElementById('name').value = User.name;
-            document.getElementById('date').value = User.birthDate.toISOString().split('T')[0];
-            var opt = document.getElementById('countries').options;
-
+            const User = self.users.find(i => i.id === idUser);
+            document.getElementById('username').value = User.username;
+            document.getElementById('password').value = User.password;
+            document.getElementById('email').value = User.email;
+            document.getElementById('role').value = User.role;
         }
     }
-    createButton(divTable, newUserEventHandler, 'New User');
+    createButton(divTable, createUserEventHandler, 'Create User');
     createButton(divTable, deleteUserEventHandler, 'Delete User');
     createButton(divTable, updateUserEventHandler, 'Update User');
     replaceChilds(this.id, divTable);

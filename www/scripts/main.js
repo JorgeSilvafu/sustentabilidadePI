@@ -6,7 +6,7 @@
  * @params {Event} event - objeto que representará o evento
  */
 window.onload = function (event) {
-    const info = new Information('divInformation');
+    const info = new Information('inicio');
     info.getUsers();
     info.getComments();
     info.getContents();
@@ -36,14 +36,19 @@ function tableLine(object, headerFormat) {
     if (!headerFormat) tr.appendChild(createCellCheckbox());
     else tr.appendChild(document.createElement('th'));
     let tableCell = null;
+    let index = 1;
     for (let property in object) {
         if ((object[property] instanceof Function))
             continue;
         if (headerFormat) {
             tableCell = document.createElement('th');
             tableCell.textContent = property[0].toUpperCase() + property.substr(1, property.length - 1);
+            tableCell.setAttribute('onclick', 'sortTable(' + index + ')');
         } else {
             tableCell = document.createElement('td');
+            if (property === 'id') {
+                tableCell.setAttribute('class', 'idTd');
+            }
             if (object[property] instanceof Date) {
                 tableCell.textContent = object[property].toISOString().split('T')[0]
             } else {
@@ -51,6 +56,7 @@ function tableLine(object, headerFormat) {
             }
         }
         tr.appendChild(tableCell);
+        index++;
     }
     return tr;
 };

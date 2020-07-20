@@ -32,6 +32,7 @@ function getUsers(req, res) {
         }
     });
 }
+module.exports.getUsers = getUsers;
 
 /**
  * Função para adicionar ou atualizar (upsert) um utilizador na BD.
@@ -74,6 +75,7 @@ function createUpdateUser(req, res) {
         }
     });
 }
+module.exports.createUpdateUser = createUpdateUser;
 
 /**
  * Função para remover um utilizador da BD.
@@ -100,6 +102,7 @@ function removeUser(req, res) {
         }
     });
 }
+module.exports.removeUser = removeUser;
 
 /**
  * Função para retornar a lista de comentários da BD.
@@ -125,8 +128,8 @@ function getComments(req, res) {
             });
         }
     });
-
 }
+module.exports.getComments = getComments;
 
 /**
  * Função para adicionar ou atualizar (upsert) um comentário na BD.
@@ -169,6 +172,7 @@ function createUpdateComment(req, res) {
         }
     });
 }
+module.exports.createUpdateComment = createUpdateComment;
 
 /**
  * Função para remover um comentário da BD.
@@ -195,6 +199,7 @@ function removeComment(req, res) {
         }
     });
 }
+module.exports.removeComment = removeComment;
 
 /**
  * Função para retornar a lista de conteudos da BD.
@@ -220,8 +225,8 @@ function getContents(req, res) {
             });
         }
     });
-
 }
+module.exports.getContents = getContents;
 
 /**
  * Função para adicionar ou atualizar (upsert) um conteudo na BD.
@@ -261,6 +266,7 @@ function createUpdateContent(req, res) {
         }
     });
 }
+module.exports.createUpdateContent = createUpdateContent;
 
 /**
  * Função para remover um conteudo da BD.
@@ -287,13 +293,4 @@ function removeContent(req, res) {
         }
     });
 }
-
-module.exports.getUsers = getUsers;
-module.exports.createUpdateUser = createUpdateUser;
-module.exports.removeUser = removeUser;
-module.exports.getComments = getComments;
-module.exports.createUpdateComment = createUpdateComment;
-module.exports.removeComment = removeComment;
-module.exports.getContents = getContents;
-module.exports.createUpdateContent = createUpdateContent;
 module.exports.removeContent = removeContent;

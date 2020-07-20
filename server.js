@@ -1,5 +1,6 @@
+"use strict";
 const express = require('express');
-const options = require("./config/options");
+const options = require("./config/options.json");
 const requestHandlers = require("./scripts/request-handlers.js");
 const bodyParser = require("body-parser");
 const app = express();
@@ -15,7 +16,6 @@ app.get("/users", requestHandlers.getUsers);
 app.post("/users", requestHandlers.createUpdateUser);
 
 // Update User
-/** @todo Completar */
 app.put("/users/:id", requestHandlers.createUpdateUser);
 
 // Delete User
@@ -28,7 +28,6 @@ app.get("/comments", requestHandlers.getComments);
 app.post("/comments", requestHandlers.createUpdateComment);
 
 // Update Comment
-/** @todo Completar */
 app.put("/comments/:id", requestHandlers.createUpdateComment);
 
 // Delete Comment
@@ -41,11 +40,9 @@ app.get("/contents", requestHandlers.getContents);
 app.post("/content", requestHandlers.createUpdateContent);
 
 // Update Content
-/** @todo Completar */
 app.put("/content/:id", requestHandlers.createUpdateContent);
 
 // Delete Content
 app.delete("/content/:id", requestHandlers.removeContent);
 
-
-app.listen(options.server.port, () => console.log('Server inciciado no port ' + options.server.port));
+app.listen(options.server.port, () => console.log('Server inciciado em http://localhost:%d', options.server.port));

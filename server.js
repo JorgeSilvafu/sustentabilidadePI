@@ -1,35 +1,51 @@
 const express = require('express');
+const options = require("./config/options");
+const requestHandlers = require("./scripts/request-handlers.js");
 const bodyParser = require("body-parser");
 const app = express();
-const mongoose = require('mongoose');
-const uri = require("./config/keys").mongoURI;
-
-const users = require('./routes/users');
-const comments = require('./routes/comments');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("www"));
-app.use(express.json());
 
-// Connect to MongoDB
-mongoose
-    .connect(
-        uri,
-        {
-            dbName: "sustentabilidade",
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        }
-    )
-    .then(() => console.log("MongoDB successfully connected"))
-    .catch(err => console.log(err));
-mongoose.set('useCreateIndex', true);
-mongoose.set('useFindAndModify', false);
+//Get all Users
+app.get("/users", requestHandlers.getUsers);
 
-//Routes
-app.use('/users', users);
-app.use('/comments', comments);
+//Create User
+app.post("/users", requestHandlers.createUpdateUser);
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log('Server inciciado no port ' + PORT));
+// Update User
+/** @todo Completar */
+app.put("/users/:id", requestHandlers.createUpdateUser);
+
+// Delete User
+app.delete("/users/:id", requestHandlers.removeUser);
+
+//Get all Comments
+app.get("/comments", requestHandlers.getComments);
+
+//Create Comment
+app.post("/comments", requestHandlers.createUpdateComment);
+
+// Update Comment
+/** @todo Completar */
+app.put("/comments/:id", requestHandlers.createUpdateComment);
+
+// Delete Comment
+app.delete("/comments/:id", requestHandlers.removeComment);
+
+//Get all Contents
+app.get("/contents", requestHandlers.getContents);
+
+//Create Content
+app.post("/content", requestHandlers.createUpdateContent);
+
+// Update Content
+/** @todo Completar */
+app.put("/content/:id", requestHandlers.createUpdateContent);
+
+// Delete Content
+app.delete("/content/:id", requestHandlers.removeContent);
+
+
+app.listen(options.server.port, () => console.log('Server inciciado no port ' + options.server.port));

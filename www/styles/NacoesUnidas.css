@@ -28,6 +28,22 @@ body{background-color: #adbccd;}
   background-color: #eadbd4;
   color: #0f1225;
 }
+.bottom {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  bottom: 10px;
+  left: 40px;
+}
+.bottom button{
+  width: 80px;
+  height: 30px;
+  border-radius: 8px;
+  background-color: #eadbd4;
+  color: #0f1225;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
 
 
 .header {

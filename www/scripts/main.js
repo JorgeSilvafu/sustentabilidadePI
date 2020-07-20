@@ -7,8 +7,9 @@
  */
 window.onload = function (event) {
     const info = new Information('divInformation');
-    info.getPerson();
-    info.getCountry();
+    info.getUsers();
+    info.getComments();
+    info.getContents();
     window.info = info;
 };
 
@@ -77,4 +78,10 @@ function createButton(fatherNode, eventHandler, value) {
     button.value = value;
     button.addEventListener('click', eventHandler);
     fatherNode.appendChild(button);
+}
+
+function changePage(newIdPage) {
+    document.getElementById(currentPageId).style.display = 'none';
+    currentPageId = newIdPage;
+    document.getElementById(newIdPage).style.display = 'block';
 }

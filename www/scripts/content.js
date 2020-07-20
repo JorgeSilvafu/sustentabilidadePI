@@ -1,7 +1,12 @@
-const Content = require('../../models/content');
+"use strict";
 
-var content = new Content({
-    informacao: 'Informação de teste'
-});
-
-content.save();
+/**
+ * @class Estrutura com capacidade de armazenar o estado de um conteudo
+ * @constructs Content
+ * @param {int} id 
+ * @param {String} informacao 
+ */
+function User(id, informacao) {
+    this.id = id;
+    this.informacao = informacao;
+};

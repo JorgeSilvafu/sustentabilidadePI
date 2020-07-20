@@ -6,6 +6,11 @@
     <meta charset="utf-8" />
     <title>Sustentabilidade</title>
     <link href="./styles/Utilizadores.css" rel="stylesheet" type="text/css" />
+    <script src="scripts/content.js"></script>
+    <script src="scripts/comment.js"></script>
+    <script src="scripts/user.js"></script>
+    <script src="scripts/information.js"></script>
+    <script src="scripts/main.js"></script>
 </head>
 
 <body>
@@ -43,24 +48,7 @@
         </section>
 
         <section id="users">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each getAllUsers}}
-                    <tr>
-                        <td>{{this.username}}</td>
-                        <td>{{this.email}}</td>
-                        <td>{{this.role}}</td>
-                    </tr>
-                    {{/each}}
-                </tbody>
-            </table>
+            <a id="menuUsers" href="javascript:info.showUsers();">Utilizadores</a>
         </section>
 
         <hr />

@@ -9,7 +9,7 @@
  * @param {String} comentario 
  * @param {Date} data 
  */
-function User(id, titulo, username, comentario, data) {
+function Comment(id, titulo, username, comentario, data) {
     this.id = id;
     this.titulo = titulo;
     this.username = username;

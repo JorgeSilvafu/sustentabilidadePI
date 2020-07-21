@@ -113,9 +113,17 @@ body{background-color: #adbccd;}
   color: #0f1225;
 }
 
-#definicao {
+#definicao, 
+#pilares, 
+#nacoesUnidas,
+#pais,
+#campus,
+#tecnologia,
+#projetos,
+#ideias,
+#login {
   margin-left: 160px;
-  padding: 15px 10px;
+  padding: 0 15px 10px;
   font-size: 20px;
   display: none;
 }
@@ -123,8 +131,57 @@ body{background-color: #adbccd;}
   margin-top: 10px;
 }
 .p2 {
+  padding: 5px 0px;
+  display: flex;
+  justify-content: space-around;
+}
+.p3 {
+  padding: 0px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+#nacoesUnidas .p1{
+  display: flex;
+}
+#nacoesUnidas .p2,
+#pais .p2,
+#tecnologia .p2{
+  display: flex;
+  padding: 5px 0px 10px 0px;
+  justify-content: center;
+  align-items: center;
+}
+#pais .p1{
   padding: 10px 0px;
   display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.exemplos{
+  display: flex;
+}
+#ideias .p1{
+  padding: 0px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+#login2 {
+  background-color: #0f1225;
+  width: 15%;
+  padding: 20px;
+  border-top: 20px;
+  display: flex;
+  flex-direction: column;
+  color: #eadbd4;
+  border-radius: 10px;
+}
+#login2 input[type='password'],
+#login2 input[type='email'],
+#login2 textarea {
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 .img {

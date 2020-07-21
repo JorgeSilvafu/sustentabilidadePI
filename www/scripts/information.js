@@ -98,6 +98,39 @@ Information.prototype.showUsers = function () {
 Information.prototype.showHomepage = function() {
     changePage('homepage');
 }
+
 Information.prototype.showDefinicao = function() {
     changePage('definicao');
+}
+
+Information.prototype.showPilares = function() {
+    changePage('pilares');
+}
+
+Information.prototype.showNacoesUnidas = function() {
+    changePage('nacoesUnidas');
+}
+
+Information.prototype.showPais = function() {
+    changePage('pais');
+}
+
+Information.prototype.showCampus = function() {
+    changePage('campus');
+}
+
+Information.prototype.showTecnologia = function() {
+    changePage('tecnologia');
+}
+
+Information.prototype.showProjetos = function() {
+    changePage('projetos');
+}
+
+Information.prototype.showIdeias = function() {
+    changePage('ideias');
+}
+
+Information.prototype.showLogin = function() {
+    changePage('login');
 }

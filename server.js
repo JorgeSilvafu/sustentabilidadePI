@@ -10,31 +10,31 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("www"));
 
 //Get all Users
-app.get("/users", requestHandlers.getUsers);
+app.get("/user", requestHandlers.getUsers);
 
 //Create User
-app.post("/users", requestHandlers.createUpdateUser);
+app.post("/user", requestHandlers.createUpdateUser);
 
 // Update User
-app.put("/users/:id", requestHandlers.createUpdateUser);
+app.put("/user/:id", requestHandlers.createUpdateUser);
 
 // Delete User
-app.delete("/users/:id", requestHandlers.removeUser);
+app.delete("/user/:id", requestHandlers.removeUser);
 
 //Get all Comments
-app.get("/comments", requestHandlers.getComments);
+app.get("/comment", requestHandlers.getComments);
 
 //Create Comment
-app.post("/comments", requestHandlers.createUpdateComment);
+app.post("/comment", requestHandlers.createUpdateComment);
 
 // Update Comment
-app.put("/comments/:id", requestHandlers.createUpdateComment);
+app.put("/comment/:id", requestHandlers.createUpdateComment);
 
 // Delete Comment
-app.delete("/comments/:id", requestHandlers.removeComment);
+app.delete("/comment/:id", requestHandlers.removeComment);
 
 //Get all Contents
-app.get("/contents", requestHandlers.getContents);
+app.get("/content", requestHandlers.getContents);
 
 //Create Content
 app.post("/content", requestHandlers.createUpdateContent);

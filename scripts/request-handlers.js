@@ -48,7 +48,7 @@ function createUpdateUser(req, res) {
         } else {
             let collection = client.db('sustentabilidade').collection("users");
 
-            collection.update(
+            collection.updateOne(
                 {
                     _id: new ObjectID(req.method === 'PUT' ? req.body.id : null)
                 },

@@ -49,14 +49,14 @@ body{background-color: #adbccd;}
 .header {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   flex-direction: column;
   height: 80px;
-  margin-left: 160px;
   padding: 5px 10px;
   border-bottom: 2px solid white;
 }
 .header t{
-  font-size: 40px;
+  font-size: 45px;
   color: #0f1225;
 }
 .header t2{
@@ -66,7 +66,7 @@ body{background-color: #adbccd;}
 }
 
 
-.main {
+#homepage {
   margin-left: 160px;
   padding: 0px 10px;
 }
@@ -113,9 +113,29 @@ body{background-color: #adbccd;}
   color: #0f1225;
 }
 
+#definicao {
+  margin-left: 160px;
+  padding: 15px 10px;
+  font-size: 20px;
+  display: none;
+}
+.p1{
+  margin-top: 10px;
+}
+.p2 {
+  padding: 10px 0px;
+  display: flex;
+}
+
+.img {
+  padding: 5px 10px;
+}
 
 .footer {
   margin-left: 160px;
   padding: 0px 10px;
   font-size: 12px;
+}
+.footer a{
+  font-size: 16px;
 }

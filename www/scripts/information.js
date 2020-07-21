@@ -3,9 +3,9 @@
 /**
  * @class Guarda toda informação necessaria na execução do exercicio 
  * @constructs Informacao
- * @param {int} id 
+ * @param {string} id 
  * 
- * @property {int} id - id do elemento HTML que contém a informação.
+ * @property {string} id - id do elemento HTML que contém a informação.
  * @property {user[]} users - Array de objetos do tipo user, para guardar todos os utilizadores do nosso sistema
  * @property {comment[]} comments - Array de objetos do tipo comment, para guardar todos os comentarios do nosso sistema
  * @property {content[]} contents - Array de objetos do tipo content, para guardar todos os conteudos do nosso sistema
@@ -16,6 +16,7 @@ function Information(id) {
     this.comments = [];
     this.contents = [];
 };
+var status = false;
 
 /**
  * 
@@ -39,7 +40,7 @@ Information.prototype.getUsers = function () {
  * Cria dinamicamente uma tabela com a informação dos utilizadores
  */
 Information.prototype.showUsers = function () {
-    const self = this;
+    const self = this;    
     const table = document.createElement('table');
     table.appendChild(tableLine(new User(), true));
     this.users.forEach(p => {
@@ -77,7 +78,7 @@ Information.prototype.showUsers = function () {
         }
         if (idUser) {
             replaceChilds('divTable', document.createElement('div'));
-            //document.getElementById('formUser').action = 'javascript:info.processingUser("update");';
+            document.getElementById('formUser').action = 'javascript:info.processingUser("update");';
             document.getElementById('formUser').style.display = 'block';
             document.getElementById('formUser').reset();
             document.getElementById('id').value = idUser;
@@ -91,5 +92,12 @@ Information.prototype.showUsers = function () {
     createButton(divTable, createUserEventHandler, 'Create User');
     createButton(divTable, deleteUserEventHandler, 'Delete User');
     createButton(divTable, updateUserEventHandler, 'Update User');
-    replaceChilds(this.id, divTable);
+    replaceChilds('main', divTable);
 };
+
+Information.prototype.showHomepage = function() {
+    changePage('homepage');
+}
+Information.prototype.showDefinicao = function() {
+    changePage('definicao');
+}

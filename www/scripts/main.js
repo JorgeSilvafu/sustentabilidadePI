@@ -1,15 +1,18 @@
 'use strict';
+
+var currentPageId = 'main';
 /**
  * Função que será executada quando a página estiver toda carregada, criando a variável global 'info' com um objeto Information
  * Aproveitamos ainda para solicitar ao servidor o carregamento de dados de forma assincrona(AJAX)
  * @memberof window
  * @params {Event} event - objeto que representará o evento
  */
-window.onload = function (event) {
-    const info = new Information('inicio');
+window.onload = function () {
+    var info = new Information('main');
     info.getUsers();
-    info.getComments();
-    info.getContents();
+    //info.getComments();
+    //info.getContents();
+    info.showHomepage();
     window.info = info;
 };
 
@@ -86,6 +89,10 @@ function createButton(fatherNode, eventHandler, value) {
     fatherNode.appendChild(button);
 }
 
+/**
+ * 
+ * @param {*} newIdPage 
+ */
 function changePage(newIdPage) {
     document.getElementById(currentPageId).style.display = 'none';
     currentPageId = newIdPage;

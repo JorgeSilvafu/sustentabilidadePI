@@ -10,37 +10,43 @@
     <script src="scripts/comment.js"></script>
     <script src="scripts/user.js"></script>
     <script src="scripts/main.js"></script>
+    <script src="scripts/information.js"></script>
 </head>
 
 <body>
-    <div class="log">
-        <a href="index.html">
-            <img src="images/logotipo.jpg" alt="Logotipo Site" height="100" width="160" />
-    </div>
-
-    <div class="nav">
-        <a href="Definicao.html">Definição</a>
-        <a href="Pilares.html">Pilares</a>
-        <a href="NacoesUnidas.html">Naçoes Unidas</a>
-        <a href="Pais.html">O nosso país</a>
-        <a href="Campus.html">Campus Uni.</a>
-        <a href="Tecnologia.html">Tecnologia</a>
-        <a href="Projetos.html">Projetos</a>
-        <a href="Ideias.html">Ideias</a>
-        <hr />
-        <a href="Comentarios.html">Comentários</a>
-        <a href="Utilizadores.html">Utilizadores</a>
-        <div class="bottom">
-            <button onclick="window.location.href='Login.html'">Login</button>
+    <header>
+        <div class="log">
+            <a href="javascript:info.showHomepage();">
+                <img src="images/logotipo.jpg" alt="Logotipo Site" height="100" width="160" />
         </div>
-    </div>
 
-    <div class="header">
-        <t><b>Mensagem criativa e inovadora</b></t>
-        <t2><b>Mais uma mensagem bonita</b></t2>
-    </div>
-    <section id="inicio"></section>
-    <div class="main">
+        <div class="nav">
+            <a href="javascript:info.showDefinicao();">Definição</a>
+            <a href="Pilares.html">Pilares</a>
+            <a href="NacoesUnidas.html">Naçoes Unidas</a>
+            <a href="Pais.html">O nosso país</a>
+            <a href="Campus.html">Campus Uni.</a>
+            <a href="Tecnologia.html">Tecnologia</a>
+            <a href="Projetos.html">Projetos</a>
+            <a href="Ideias.html">Ideias</a>
+            <hr />
+            <a href="Comentarios.html">Comentários</a>
+            <a href="javascript:info.showUsers();">Utilizadores</a>
+            <div class="bottom">
+                <button onclick="window.location.href='Login.html'">Login</button>
+            </div>
+        </div>
+    </header>
+
+    <section id="main">
+
+    </section>
+
+    <section id="homepage">
+        <div class="header">
+            <t><b>Mensagem criativa e inovadora</b></t>
+            <t2><b>Mais uma mensagem bonita</b></t2>
+        </div>
         <br />
         <img src="images/homepage.jpg" alt="HomePage" class="center" height="auto" width="100%" />
         <div class="container">
@@ -72,17 +78,149 @@
                 vel, viverra aliquam arcu.
             </div>
         </div>
+    </section>
 
-        <hr />
-        <a
-            href="http://business.turismodeportugal.pt/pt/Investir/Financiamento/programa-valorizar/Paginas/Linha-de-apoio-a-sustentabilidade.aspx">Link
-            para site de apoio sustentabilidade</a>
-        <hr />
-    </div>
+    <section id="definicao">
+        <div class="header">
+            <t><b>SUSTENTABILIDADE: O que é?</b></t>
+        </div>
+        <div class="p1">
+            <section class="c1">
+                Morbi pretium nulla vel risus pretium porttitor. Ut dictum nulla quis mauris gravida, ac lobortis
+                enim
+                lacinia. Suspendisse non lacinia justo. Donec dapibus neque vitae nunc feugiat, id mollis ante
+                feugiat.
+                Aenean gravida, mauris vel porta condimentum, dolor nisl consequat orci, nec gravida neque dui ac
+                purus.
+                Proin sagittis ex lectus, sit amet pulvinar turpis pulvinar nec. Sed vitae augue est.
+                Morbi porttitor et nibh vitae luctus. In ullamcorper dictum mattis. Vivamus porta risus convallis
+                lectus
+                varius rutrum. Maecenas bibendum, augue sed faucibus viverra, nulla mi pellentesque mauris,
+                a finibus enim sem quis quam. Nunc id tempus lacus. Integer sit amet enim et est vestibulum suscipit
+                eget at felis.
+                Morbi pretium nulla vel risus pretium porttitor. Ut dictum nulla quis mauris gravida, ac lobortis
+                enim
+                lacinia. Suspendisse non lacinia justo. Donec dapibus neque vitae nunc feugiat, id mollis ante
+                feugiat.
+                Aenean gravida, mauris vel porta condimentum, dolor nisl consequat orci, nec gravida neque dui ac
+                purus.
+                Proin sagittis ex lectus, sit amet pulvinar turpis pulvinar nec. Sed vitae augue est.
+                Morbi porttitor et nibh vitae luctus. In ullamcorper dictum mattis. Vivamus porta risus convallis
+                lectus
+                varius rutrum. Maecenas bibendum, augue sed faucibus viverra, nulla mi pellentesque mauris,
+                a finibus enim sem quis quam. Nunc id tempus lacus. Integer sit amet enim et est vestibulum suscipit
+                eget at felis.
+            </section>
+        </div>
+        <div class="p2">
+            <section class="c2">
+                Morbi pretium nulla vel risus pretium porttitor. Ut dictum nulla quis mauris gravida, ac lobortis
+                enim
+                lacinia. Suspendisse non lacinia justo. Donec dapibus neque vitae nunc feugiat, id mollis ante
+                feugiat.
+                Aenean gravida, mauris vel porta condimentum, dolor nisl consequat orci, nec gravida neque dui ac
+                purus.
+                Proin sagittis ex lectus, sit amet pulvinar turpis pulvinar nec. Sed vitae augue est.
+                Morbi porttitor et nibh vitae luctus. In ullamcorper dictum mattis. Vivamus porta risus convallis
+                lectus
+                varius rutrum. Maecenas bibendum, augue sed faucibus viverra, nulla mi pellentesque mauris,
+                a finibus enim sem quis quam. Nunc id tempus lacus. Integer sit amet enim et est vestibulum suscipit
+                eget at felis.
+                Morbi pretium nulla vel risus pretium porttitor. Ut dictum nulla quis mauris gravida, ac lobortis
+                enim
+                lacinia. Suspendisse non lacinia justo. Donec dapibus neque vitae nunc feugiat, id mollis ante
+                feugiat.
+                Aenean gravida, mauris vel porta condimentum, dolor nisl consequat orci, nec gravida neque dui ac
+                purus.
+                Proin sagittis ex lectus, sit amet pulvinar turpis pulvinar nec. Sed vitae augue est.
+                Morbi porttitor et nibh vitae luctus. In ullamcorper dictum mattis. Vivamus porta risus convallis
+                lectus
+                varius rutrum. Maecenas bibendum, augue sed faucibus viverra, nulla mi pellentesque mauris,
+                a finibus enim sem quis quam. Nunc id tempus lacus. Integer sit amet enim et est vestibulum suscipit
+                eget at felis.
+                Morbi pretium nulla vel risus pretium porttitor. Ut dictum nulla quis mauris gravida, ac lobortis
+                enim
+                lacinia. Suspendisse non lacinia justo. Donec dapibus neque vitae nunc feugiat, id mollis ante
+                feugiat.
+                Aenean gravida, mauris vel porta condimentum, dolor nisl consequat orci, nec gravida neque dui ac
+                purus.
+                Proin sagittis ex lectus, sit amet pulvinar turpis pulvinar nec. Sed vitae augue est.
+                Morbi pretium nulla vel risus pretium porttitor. Ut dictum nulla quis mauris gravida, ac lobortis
+                enim
+                lacinia. Suspendisse non lacinia justo. Donec dapibus neque vitae nunc feugiat, id mollis ante
+                feugiat.
+                Aenean gravida, mauris vel porta condimentum, dolor nisl consequat orci, nec gravida neque dui ac
+                purus.
+                Proin sagittis ex lectus, sit amet pulvinar turpis pulvinar nec. Sed vitae augue est.
+            </section>
+            <img src="./images/Definicao_sust.jpg" alt="Sustentabilidade" class="img" />
+        </div>
+        <div class="p3">
+            <section class="c3">
+                Morbi pretium nulla vel risus pretium porttitor. Ut dictum nulla quis mauris gravida, ac lobortis
+                enim
+                lacinia. Suspendisse non lacinia justo. Donec dapibus neque vitae nunc feugiat, id mollis ante
+                feugiat.
+                Aenean gravida, mauris vel porta condimentum, dolor nisl consequat orci, nec gravida neque dui ac
+                purus.
+                Proin sagittis ex lectus, sit amet pulvinar turpis pulvinar nec. Sed vitae augue est.
+                Morbi porttitor et nibh vitae luctus. In ullamcorper dictum mattis. Vivamus porta risus convallis
+                lectus
+                varius rutrum. Maecenas bibendum, augue sed faucibus viverra, nulla mi pellentesque mauris,
+                a finibus enim sem quis quam. Nunc id tempus lacus. Integer sit amet enim et est vestibulum suscipit
+                eget at
+                felis.
+                Morbi pretium nulla vel risus pretium porttitor. Ut dictum nulla quis mauris gravida, ac lobortis
+                enim
+                lacinia. Suspendisse non lacinia justo. Donec dapibus neque vitae nunc feugiat, id mollis ante
+                feugiat.
+                Aenean gravida, mauris vel porta condimentum, dolor nisl consequat orci, nec gravida neque dui ac
+                purus.
+                Proin sagittis ex lectus, sit amet pulvinar turpis pulvinar nec. Sed vitae augue est.
+                Morbi porttitor et nibh vitae luctus. In ullamcorper dictum mattis. Vivamus porta risus convallis
+                lectus
+                varius rutrum. Maecenas bibendum, augue sed faucibus viverra, nulla mi pellentesque mauris,
+                a finibus enim sem quis quam. Nunc id tempus lacus. Integer sit amet enim et est vestibulum suscipit
+                eget at
+                felis.
+                Morbi pretium nulla vel risus pretium porttitor. Ut dictum nulla quis mauris gravida, ac lobortis
+                enim
+                lacinia. Suspendisse non lacinia justo. Donec dapibus neque vitae nunc feugiat, id mollis ante
+                feugiat.
+                Aenean gravida, mauris vel porta condimentum, dolor nisl consequat orci, nec gravida neque dui ac
+                purus.
+                Proin sagittis ex lectus, sit amet pulvinar turpis pulvinar nec. Sed vitae augue est.
+                Morbi porttitor et nibh vitae luctus. In ullamcorper dictum mattis. Vivamus porta risus convallis
+                lectus
+                varius rutrum. Maecenas bibendum, augue sed faucibus viverra, nulla mi pellentesque mauris,
+                a finibus enim sem quis quam. Nunc id tempus lacus. Integer sit amet enim et est vestibulum suscipit
+                eget at
+                felis.
+                Morbi pretium nulla vel risus pretium porttitor. Ut dictum nulla quis mauris gravida, ac lobortis
+                enim
+                lacinia. Suspendisse non lacinia justo. Donec dapibus neque vitae nunc feugiat, id mollis ante
+                feugiat.
+                Aenean gravida, mauris vel porta condimentum, dolor nisl consequat orci, nec gravida neque dui ac
+                purus.
+                Proin sagittis ex lectus, sit amet pulvinar turpis pulvinar nec. Sed vitae augue est.
+                Morbi porttitor et nibh vitae luctus. In ullamcorper dictum mattis. Vivamus porta risus convallis
+                lectus
+                varius rutrum. Maecenas bibendum, augue sed faucibus viverra, nulla mi pellentesque mauris,
+                a finibus enim sem quis quam. Nunc id tempus lacus. Integer sit amet enim et est vestibulum suscipit
+                eget at
+                felis.
+            </section>
+        </div>
+    </section>
 
-    <div class="footer">
-        Copyright &copy
-    </div>
+    <footer class="footer">
+            <hr />
+            <a
+                href="http://business.turismodeportugal.pt/pt/Investir/Financiamento/programa-valorizar/Paginas/Linha-de-apoio-a-sustentabilidade.aspx">Link
+                para site de apoio sustentabilidade</a>
+            <hr />
+            Copyright &copy
+    </footer>
 </body>
 
 </html>

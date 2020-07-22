@@ -205,7 +205,7 @@ Information.prototype.removeComment = function (id) {
 Information.prototype.processingComment = function (action) {
     const id = document.getElementById('id').value;
     const titulo = document.getElementById('titulo').value;
-    const username = document.getElementById('usernameC').value;
+    const username = document.getElementById('usernameCo').value;
     const comentario = document.getElementById('comentario').value;
     const comment = new Comment(id, titulo, username, comentario);
     const xhr = new XMLHttpRequest();
@@ -238,7 +238,7 @@ Information.prototype.processingComment = function (action) {
 }
 
 /**
- * Cria dinamicamente uma tabela com a informação dos utilizadores
+ * Cria dinamicamente uma tabela com a informação dos comentários
  */
 Information.prototype.showComments = function () {
     const self = this;
@@ -272,7 +272,7 @@ Information.prototype.showComments = function () {
             const comment = self.comments.find(i => i.id === idComment);
             document.getElementById('id').value = idComment;
             document.getElementById('titulo').value = comment.titulo;
-            document.getElementById('usernameC').value = comment.username;
+            document.getElementById('usernameCo').value = comment.username;
             document.getElementById('comentario').value = comment.comentario;
         }
     }
@@ -293,43 +293,108 @@ Information.prototype.showComments = function () {
     updatePage('main2');
 };
 
+/**
+ * Cria dinamicamente um div com a informação dos comentários
+ */
+Information.prototype.showAllComments = function () {
+    const self = this;
+    const div = document.getElementById('allComments');
 
+    for (let index = 0; index < self.comments.length; index++) {
+        const section = document.createElement('section');
+        section.setAttribute("id", "comment");
+
+        const title = document.createElement('p');
+        title.setAttribute("id", "titleC");
+        title.textContent = self.comments[index].titulo;
+        section.appendChild(title);
+
+        const username = document.createElement('p');
+        username.setAttribute("id", "usernameC");
+        title.textContent = self.comments[index].username;
+        section.appendChild(username);
+
+        const commentC = document.createElement('p');
+        commentC.setAttribute("id", "commentC");
+        title.textContent = self.comments[index].comentario;
+        section.appendChild(commentC);
+
+        const data = document.createElement('h5');
+        data.setAttribute("id", "dataC");
+        title.textContent = self.comments[index].data;
+        section.appendChild(data);
+
+        div.appendChild(section);
+    }
+    updatePage('main3')
+};
+
+/**
+ * Altera dinamicamente a página mostrada para a homepage
+ */
 Information.prototype.showHomepage = function () {
     updatePage('homepage');
 }
 
+/**
+ * Altera dinamicamente a página mostrada para definição
+ */
 Information.prototype.showDefinicao = function () {
     updatePage('definicao');
 }
 
+/**
+ * Altera dinamicamente a página mostrada para pilares
+ */
 Information.prototype.showPilares = function () {
     updatePage('pilares');
 }
 
+/**
+ * Altera dinamicamente a página mostrada para nações unidas
+ */
 Information.prototype.showNacoesUnidas = function () {
     updatePage('nacoesUnidas');
 }
 
+/**
+ * Altera dinamicamente a página mostrada para país
+ */
 Information.prototype.showPais = function () {
     updatePage('pais');
 }
 
+/**
+ * Altera dinamicamente a página mostrada para campus
+ */
 Information.prototype.showCampus = function () {
     updatePage('campus');
 }
 
+/**
+ * Altera dinamicamente a página mostrada para tecnologia
+ */
 Information.prototype.showTecnologia = function () {
     updatePage('tecnologia');
 }
 
+/**
+ * Altera dinamicamente a página mostrada para projetos
+ */
 Information.prototype.showProjetos = function () {
     updatePage('projetos');
 }
 
+/**
+ * Altera dinamicamente a página mostrada para ideias
+ */
 Information.prototype.showIdeias = function () {
     updatePage('ideias');
 }
 
+/**
+ * Altera dinamicamente a página mostrada para o login
+ */
 Information.prototype.showLogin = function () {
     updatePage('login');
 }

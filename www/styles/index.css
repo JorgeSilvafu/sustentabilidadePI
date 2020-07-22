@@ -125,6 +125,7 @@ body{background-color: #adbccd;}
 #createUser,
 #main,
 #main2,
+#main3,
 #createComment {
   margin-left: 160px;
   padding: 0 15px 10px;
@@ -267,12 +268,51 @@ table tfoot td {
   color: #eadbd4;
   border-radius: 10px;
 }
-#respond input[type='text'],
-#respond input[type='email'],
+#respond input,
 #respond textarea {
   margin-bottom: 10px;
   width: 100%;
 }
+
+#allComments{
+  background-color: #0f1225;
+  border: 2px solid white;
+  margin: auto;
+  width: 95%;
+  border-radius: 10px;
+  padding: 10px
+}
+#comment{
+  background-color: #eadbd4;
+  margin: 20px;
+  border-radius: 10px;
+}
+#titleC{
+  position: relative;
+  top: 15px;
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+}
+#usernameC{
+  margin-top: -20px;
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+#commentC{
+  border: 1px solid #0f1225;
+  border-radius: 10px;
+  padding: 10px;
+  margin: -20px 10px;
+}
+#dataC{
+  text-align: right;
+  padding-right: 20px;
+  padding-bottom: 5px;
+}
+
+
 
 .img {
   padding: 5px 10px;

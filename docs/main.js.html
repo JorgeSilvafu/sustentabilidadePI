@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: main.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: main.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+/**
+ * Variável que serve para guardar o ID da página em nos encontramos
+ */
+var pageId = 'homepage';
+/**
+ * Função que será executada quando a página estiver toda carregada, criando a variável global 'info' com um objeto Information
+ * Aproveitamos ainda para solicitar ao servidor o carregamento de dados de forma assincrona(AJAX)
+ * @memberof window
+ * @params {Event} event - objeto que representará o evento
+ */
+window.onload = function () {
+    var info = new Information('main');
+    info.getUsers();
+    info.getComments();
+    //info.getContents();
+    window.info = info;
+};
+
+/**
+ * Função que substitui todos os elementos filhos de um elemento HTML por um novo elemento HTML (facilitador de DOM)
+ * @param {string} id - id do elemento HTML para o qual se pretende substituir os filhos.
+ * @param {HTMLElement} newSon - elemento HTML que será o novo filho.
+ */
+function replaceChilds(id, newSon) {
+    const no = document.getElementById(id);
+    while (no.hasChildNodes()) {
+        no.removeChild(no.lastChild);
+    }
+    no.appendChild(newSon);
+};
+
+/**
+ * Função que recebe um qualquer objeto e retorna dinamicamente uma linha de tabela HTML com informação relativa ao estado das suas propriedades
+ * @param {Object} object - objecto do qual vamos transformar o conteudo dos seus atributos em linhas
+ * @param {boolean} headerFormat - controla de o formato é cabeçalho ou linha normal
+ */
+function tableLine(object, headerFormat) {
+    const tr = document.createElement('tr');
+    if (!headerFormat) tr.appendChild(createCellCheckbox());
+    else tr.appendChild(document.createElement('th'));
+    let tableCell = null;
+    let index = 1;
+    for (let property in object) {
+        if ((object[property] instanceof Function))
+            continue;
+        if (headerFormat) {
+            tableCell = document.createElement('th');
+            tableCell.textContent = property[0].toUpperCase() + property.substr(1, property.length - 1);
+            tableCell.setAttribute('onclick', 'sortTable(' + index + ')');
+        } else {
+            tableCell = document.createElement('td');
+            if (property === 'id') {
+                tableCell.setAttribute('class', 'idTd');
+            }
+            if (object[property] instanceof Date) {
+                tableCell.textContent = object[property].toISOString().split('T')[0]
+            } else {
+                tableCell.textContent = object[property];
+            }
+        }
+        tr.appendChild(tableCell);
+        index++;
+    }
+    return tr;
+};
+
+/**
+ * Função genérica que tem como objetivo a criação de uma coluna com checkbox
+ */
+function createCellCheckbox() {
+    const td = document.createElement('td');
+    const check = document.createElement('input');
+    check.type = 'checkbox';
+    td.appendChild(check);
+    return td;
+}
+
+/**
+ * Função genérica que cria um botão HTML, dá-lhe um evento e coloca-o na árvore de nós
+ * @param {HTMLElement} fatherNode - nó pai do botão
+ * @param {function} eventHandler - evento do botão.
+ * @param {String} value - texto do botão.
+ */
+function createButton(fatherNode, eventHandler, value) {
+    const button = document.createElement('input');
+    button.type = 'button';
+    button.value = value;
+    button.addEventListener('click', eventHandler);
+    fatherNode.appendChild(button);
+}
+
+/**
+ * Método que esconde a página em que nos encontramos e revela a nova página a mostrar
+ * @param {id} newPageId 
+ */
+function updatePage(newPageId) {
+    document.getElementById(pageId).style.display = 'none';
+    pageId = newPageId;
+    document.getElementById(newPageId).style.display = 'block';
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Comment.html">Comment</a></li><li><a href="Content.html">Content</a></li><li><a href="Informacao.html">Informacao</a></li><li><a href="User.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html#createButton">createButton</a></li><li><a href="global.html#createCellCheckbox">createCellCheckbox</a></li><li><a href="global.html#pageId">pageId</a></li><li><a href="global.html#replaceChilds">replaceChilds</a></li><li><a href="global.html#tableLine">tableLine</a></li><li><a href="global.html#updatePage">updatePage</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Jul 22 2020 04:55:01 GMT+0100 (GMT+01:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

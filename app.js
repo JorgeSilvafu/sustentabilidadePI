@@ -9,10 +9,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("www"));
 
-//Get all Users
+// Get all Users
 app.get("/user", requestHandlers.getUsers);
 
-//Create User
+// Create User
 app.post("/user", requestHandlers.createUpdateUser);
 
 // Update User
@@ -21,10 +21,10 @@ app.put("/user/:id", requestHandlers.createUpdateUser);
 // Delete User
 app.delete("/user/:id", requestHandlers.removeUser);
 
-//Get all Comments
+// Get all Comments
 app.get("/comment", requestHandlers.getComments);
 
-//Create Comment
+// Create Comment
 app.post("/comment", requestHandlers.createUpdateComment);
 
 // Update Comment
@@ -33,10 +33,10 @@ app.put("/comment/:id", requestHandlers.createUpdateComment);
 // Delete Comment
 app.delete("/comment/:id", requestHandlers.removeComment);
 
-//Get all Contents
+// Get all Contents
 app.get("/content", requestHandlers.getContents);
 
-//Create Content
+// Create Content
 app.post("/content", requestHandlers.createUpdateContent);
 
 // Update Content

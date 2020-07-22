@@ -43,10 +43,6 @@ Information.prototype.removeUser = function (id) {
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
     xhr.open('DELETE', '/user/' + id);
-    /**
-     * Guardar referência para o 'this' para que possa ser utilizado nos event handlers e callbacks.
-     * Assim evita-se o acesso através da referência global 'info' definida no 'main.js'.
-     */
     const self = this;
     xhr.onreadystatechange = function () {
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
@@ -70,10 +66,6 @@ Information.prototype.processingUser = function (action) {
     let user = new User(id, username, password, email, role);
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
-    /**
-     * Guardar referência para o 'this' para que possa ser utilizado nos event handlers e callbacks.
-     * Assim evita-se o acesso através da referência global 'info' definida no 'main.js'.
-     */
     const self = this;
     if (action === 'create') {
         xhr.onreadystatechange = function () {
@@ -162,10 +154,6 @@ Information.prototype.getComments = function () {
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
     xhr.open('GET', '/comment');
-    /**
-     * Guardar referência para o 'this' para que possa ser utilizado nos event handlers e callbacks.
-     * Assim evita-se o acesso através da referência global 'info' definida no 'main.js'.
-     */
     const self = this;
     xhr.onreadystatechange = function () {
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
@@ -184,10 +172,6 @@ Information.prototype.removeComment = function (id) {
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
     xhr.open('DELETE', '/comment/' + id);
-    /**
-     * Guardar referência para o 'this' para que possa ser utilizado nos event handlers e callbacks.
-     * Assim evita-se o acesso através da referência global 'info' definida no 'main.js'.
-     */
     const self = this;
     xhr.onreadystatechange = function () {
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
@@ -210,10 +194,6 @@ Information.prototype.processingComment = function (action) {
     const comment = new Comment(id, titulo, username, comentario);
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
-    /**
-     * Guardar referência para o 'this' para que possa ser utilizado nos event handlers e callbacks.
-     * Assim evita-se o acesso através da referência global 'info' definida no 'main.js'.
-     */
     const self = this;
     if (action === 'create') {
         xhr.onreadystatechange = function () {
@@ -297,31 +277,30 @@ Information.prototype.showComments = function () {
  * Cria dinamicamente um div com a informação dos comentários
  */
 Information.prototype.showAllComments = function () {
-    const self = this;
     const div = document.getElementById('allComments');
 
-    for (let index = 0; index < self.comments.length; index++) {
+    for (let index = 0; index < this.comments.length; index++) {
         const section = document.createElement('section');
         section.setAttribute("id", "comment");
 
         const title = document.createElement('p');
         title.setAttribute("id", "titleC");
-        title.textContent = self.comments[index].titulo;
+        title.textContent = this.comments[index].titulo;
         section.appendChild(title);
 
         const username = document.createElement('p');
         username.setAttribute("id", "usernameC");
-        title.textContent = self.comments[index].username;
+        username.textContent = this.comments[index].username;
         section.appendChild(username);
 
         const commentC = document.createElement('p');
         commentC.setAttribute("id", "commentC");
-        title.textContent = self.comments[index].comentario;
+        commentC.textContent = this.comments[index].comentario;
         section.appendChild(commentC);
 
         const data = document.createElement('h5');
         data.setAttribute("id", "dataC");
-        title.textContent = self.comments[index].data;
+        data.textContent = this.comments[index].data;
         section.appendChild(data);
 
         div.appendChild(section);

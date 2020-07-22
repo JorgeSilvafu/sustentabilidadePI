@@ -1,6 +1,9 @@
 'use strict';
 
-var currentPageId = 'homepage';
+/**
+ * Variável que serve para guardar o ID da página em nos encontramos
+ */
+var pageId = 'homepage';
 /**
  * Função que será executada quando a página estiver toda carregada, criando a variável global 'info' com um objeto Information
  * Aproveitamos ainda para solicitar ao servidor o carregamento de dados de forma assincrona(AJAX)
@@ -10,9 +13,8 @@ var currentPageId = 'homepage';
 window.onload = function () {
     var info = new Information('main');
     info.getUsers();
-    //info.getComments();
+    info.getComments();
     //info.getContents();
-    info.showHomepage();
     window.info = info;
 };
 
@@ -90,11 +92,11 @@ function createButton(fatherNode, eventHandler, value) {
 }
 
 /**
- * 
- * @param {*} newIdPage 
+ * Método que esconde a página em que nos encontramos e revela a nova página a mostrar
+ * @param {id} newPageId 
  */
-function changePage(newIdPage) {
-    document.getElementById(currentPageId).style.display = 'none';
-    currentPageId = newIdPage;
-    document.getElementById(newIdPage).style.display = 'block';
+function updatePage(newPageId) {
+    document.getElementById(pageId).style.display = 'none';
+    pageId = newPageId;
+    document.getElementById(newPageId).style.display = 'block';
 }

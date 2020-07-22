@@ -30,7 +30,7 @@
             <a href="javascript:info.showProjetos();">Projetos</a>
             <a href="javascript:info.showIdeias();">Ideias</a>
             <hr />
-            <a href="Comentarios.html">Comentários</a>
+            <a href="javascript:info.showComments();">Comentários</a>
             <a href="javascript:info.showUsers();">Utilizadores</a>
             <div class="bottom">
                 <button onclick="window.location.href='javascript:info.showLogin();'">Login</button>
@@ -40,8 +40,7 @@
 
     <section id="main">
         <div class="header">
-            <t><b>Mensagem criativa e inovadora</b></t>
-            <t2><b>Mais uma mensagem bonita</b></t2>
+            <t><b>Utilizadores da nossa aplicação</b></t>
         </div>
         <div id='users'>
             <div id="table">
@@ -50,24 +49,57 @@
         </div>
     </section>
 
+    <section id="main2">
+        <div class="header">
+            <t><b>Comentários</b></t>
+        </div>
+        <div id='users'>
+            <div id="table2">
+
+            </div>
+        </div>
+    </section>
+
     <section id="createUser">
         <div class="header">
-            <t><b>Mensagem criativa e inovadora</b></t>
-            <t2><b>Mais uma mensagem bonita</b></t2>
+            <t><b>Utilizadores da nossa aplicação</b></t>
         </div>
-        <form id="formUser" action="javascript:info.processingUser('create');">
-            <input id="id" type="hidden" />
-            <label for="username">Username:</label>&nbsp;
-            <input id="username" type="text" placeholder="Introduza um Username"><br />
-            <label for="password">Password:</label>&nbsp;
-            <input id="password" type="text" placeholder="Introduza uma Password" /><br />
-            <label for="email">Email:</label>&nbsp;
-            <input id="email" type="text" placeholder="Introduza o Email" /><br />
-            <label for="role">Role:</label>&nbsp;
-            <input id="role" type="role" placeholder="Introduza o Role" /><br />
-            <input id="Save" type="submit" value="Guardar" />
-            <input id="clean" type="reset" value="Limpar" />
-        </form>
+        <section id="addUser">
+            <h1>Adicionar Utilizador</h1>
+            <form id="formUser" action="javascript:info.processingUser('create');">
+                <input id="id" type="hidden" required />
+                <label for="username">Username:</label>&nbsp;
+                <input id="username" type="text" placeholder="Introduza um Username" required><br />
+                <label for="password">Password:</label>&nbsp;
+                <input id="password" type="password" placeholder="Introduza uma Password" required /><br />
+                <label for="email">Email:</label>&nbsp;
+                <input id="email" type="text" placeholder="Introduza o Email" required /><br />
+                <label for="role">Role:</label>&nbsp;
+                <input id="role" type="role" placeholder="Introduza o Role" required /><br />
+                <button id="save" type="submit">Guardar</button>
+                <button id="clean" type="reset">Limpar</button>
+            </form>
+        </section>
+    </section>
+
+    <section id="createComment">
+        <div class="header">
+            <t><b>Comentários</b></t>
+        </div>
+        <section id="respond">
+            <h1>Deixa um comentário</h1>
+            <form id="formComment" action="javascript:info.processingUser('create');">
+                <input id="id" type="hidden" required />
+                <label for="username">Username</label>&nbsp;
+                <input id="usernameC" type="text" required>
+                <label for="titulo">Título</label>&nbsp;
+                <input id="titulo" type="text" required>
+                <label for="comentario">Comentário</label>&nbsp;
+                <textarea id="comentario" rows="10" required></textarea>
+                <input id="submeter" type="submit" value="Submeter" />
+                <input id="clean" type="reset" value="Limpar" />
+            </form>
+        </section>
     </section>
 
 

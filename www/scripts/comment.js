@@ -3,16 +3,16 @@
 /**
  * @class Estrutura com capacidade de armazenar o estado de um comentario
  * @constructs Comment
- * @param {int} id 
+ * @param {String} id 
  * @param {String} titulo 
  * @param {String} username 
  * @param {String} comentario 
  * @param {Date} data 
  */
-function Comment(id, titulo, username, comentario, data) {
+function Comment(id, titulo, username, comentario) {
     this.id = id;
     this.titulo = titulo;
     this.username = username;
     this.comentario = comentario;
-    this.data = data;
+    this.data = new Date();
 };

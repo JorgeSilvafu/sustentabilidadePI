@@ -59,15 +59,15 @@ Information.prototype.removeUser = function (id) {
 
 /**
  * Função que insere ou atualiza o recurso user com um pedido ao servidor NODE.JS através do verbo POST ou PUT, usando pedidos assincronos e JSON
- * @param {String} acao - controla qual a operação do CRUD que queremos fazer
+ * @param {String} action - controla qual a operação do CRUD que queremos fazer
   */
-Information.prototype.processingUser = function (acao) {
+Information.prototype.processingUser = function (action) {
     const id = document.getElementById('id').value;
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     const email = document.getElementById('email').value;
     const role = document.getElementById('role').value;
-    const user = new User(id, username, password, email, role);
+    let user = new User(id, username, password, email, role);
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
     /**
@@ -75,7 +75,7 @@ Information.prototype.processingUser = function (acao) {
      * Assim evita-se o acesso através da referência global 'info' definida no 'main.js'.
      */
     const self = this;
-    if (acao === 'create') {
+    if (action === 'create') {
         xhr.onreadystatechange = function () {
             if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                 const newUser = new User(xhr.response._id, username, password, email, role);
@@ -84,7 +84,7 @@ Information.prototype.processingUser = function (acao) {
             }
         }
         xhr.open('POST', '/user');
-    } else if (acao === 'update') {
+    } else if (action === 'update') {
         xhr.onreadystatechange = function () {
             if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                 self.users[self.users.findIndex(i => i.id === id)] = user;
@@ -102,7 +102,6 @@ Information.prototype.processingUser = function (acao) {
  */
 Information.prototype.showUsers = function () {
     const self = this;
-    document.getElementById('createUser').style.display = 'none';
     const table = document.createElement('table');
     table.appendChild(tableLine(new User(), true));
     this.users.forEach(p => {
@@ -115,7 +114,7 @@ Information.prototype.showUsers = function () {
 
     function createUserEventHandler() {
         document.getElementById('formUser').action = 'javascript:info.processingUser("create");';
-        changePage('createUser');
+        updatePage('createUser');
     }
 
     function updateUserEventHandler() {
@@ -128,16 +127,14 @@ Information.prototype.showUsers = function () {
             }
         }
         if (idUser) {
-            replaceChilds('divTable', document.createElement('div'));
+            updatePage('createUser');
             document.getElementById('formUser').action = 'javascript:info.processingUser("update");';
-            document.getElementById('formUser').style.display = 'block';
-            document.getElementById('formUser').reset();
-            document.getElementById('id').value = idUser;
             const user = self.users.find(i => i.id === idUser);
-            document.getElementById('username').value = person.username;
-            document.getElementById('password').value = person.password;
-            document.getElementById('email').value = person.email;
-            document.getElementById('role').value = person.role;
+            document.getElementById('id').value = idUser;
+            document.getElementById('username').value = user.username;
+            document.getElementById('password').value = user.password;
+            document.getElementById('email').value = user.email;
+            document.getElementById('role').value = user.role;
         }
     }
 
@@ -154,22 +151,26 @@ Information.prototype.showUsers = function () {
     createButton(divTable, updateUserEventHandler, 'Editar Utilizador');
     createButton(divTable, deleteUserEventHandler, 'Eliminar Utilizador');
     replaceChilds('table', divTable);
-    changePage('main');
+    updatePage('main');
 };
 
 
 /**
- * Função que que tem como principal objetivo solicitar ao servidor NODE.JS o recurso users através do verbo GET, usando pedidos assincronos e JSON
+ * Função que que tem como principal objetivo solicitar ao servidor NODE.JS o recurso comment através do verbo GET, usando pedidos assincronos e JSON
  */
 Information.prototype.getComments = function () {
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
     xhr.open('GET', '/comment');
+    /**
+     * Guardar referência para o 'this' para que possa ser utilizado nos event handlers e callbacks.
+     * Assim evita-se o acesso através da referência global 'info' definida no 'main.js'.
+     */
     const self = this;
     xhr.onreadystatechange = function () {
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-            this.response.comment.forEach(p => {
-                self.comments.push(new User(p._id, p.titulo, p.username, p.comentario, p.data));
+            this.response.comments.forEach(p => {
+                self.comments.push(new Comment(p._id, p.titulo, p.username, p.comentario));
             });
         }
     };
@@ -177,12 +178,12 @@ Information.prototype.getComments = function () {
 };
 
 /**
- * Função que apaga o recurso user com ym pedido ao NODE.JS através do verbo DELETE, usando pedidos assincronos e JSON
+ * Função que apaga o recurso comment com ym pedido ao NODE.JS através do verbo DELETE, usando pedidos assincronos e JSON
   */
 Information.prototype.removeComment = function (id) {
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
-    xhr.open('DELETE', '/user/' + id);
+    xhr.open('DELETE', '/comment/' + id);
     /**
      * Guardar referência para o 'this' para que possa ser utilizado nos event handlers e callbacks.
      * Assim evita-se o acesso através da referência global 'info' definida no 'main.js'.
@@ -190,24 +191,23 @@ Information.prototype.removeComment = function (id) {
     const self = this;
     xhr.onreadystatechange = function () {
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-            self.users.splice(self.users.findIndex(i => i.id === id), 1);
-            self.showUsers();
+            self.comments.splice(self.comments.findIndex(i => i.id === id), 1);
+            self.showComments();
         }
     };
     xhr.send();
 }
 
 /**
- * Função que insere ou atualiza o recurso user com um pedido ao servidor NODE.JS através do verbo POST ou PUT, usando pedidos assincronos e JSON
- * @param {String} acao - controla qual a operação do CRUD que queremos fazer
+ * Função que insere ou atualiza o recurso comment com um pedido ao servidor NODE.JS através do verbo POST ou PUT, usando pedidos assincronos e JSON
+ * @param {String} action - controla qual a operação do CRUD que queremos fazer
   */
-Information.prototype.processingComment = function (acao) {
+Information.prototype.processingComment = function (action) {
     const id = document.getElementById('id').value;
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const email = document.getElementById('email').value;
-    const role = document.getElementById('role').value;
-    const user = new User(id, username, password, email, role);
+    const titulo = document.getElementById('titulo').value;
+    const username = document.getElementById('usernameC').value;
+    const comentario = document.getElementById('comentario').value;
+    const comment = new Comment(id, titulo, username, comentario);
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
     /**
@@ -215,26 +215,26 @@ Information.prototype.processingComment = function (acao) {
      * Assim evita-se o acesso através da referência global 'info' definida no 'main.js'.
      */
     const self = this;
-    if (acao === 'create') {
+    if (action === 'create') {
         xhr.onreadystatechange = function () {
             if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                const newUser = new User(xhr.response._id, username, password, email, role);
-                self.users.push(newUser);
-                self.showUsers();
+                const newComment = new Comment(xhr.response._id, titulo, username, comentario);
+                self.comments.push(newComment);
+                self.showComments();
             }
         }
-        xhr.open('POST', '/user');
-    } else if (acao === 'update') {
+        xhr.open('POST', '/comment');
+    } else if (action === 'update') {
         xhr.onreadystatechange = function () {
             if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                self.users[self.users.findIndex(i => i.id === id)] = user;
-                self.showUsers();
+                self.comments[self.comments.findIndex(i => i.id === id)] = comment;
+                self.showComments();
             }
         }
-        xhr.open('PUT', '/user/' + id);
+        xhr.open('PUT', '/comment/' + id);
     }
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify(user));
+    xhr.send(JSON.stringify(comment));
 }
 
 /**
@@ -242,10 +242,9 @@ Information.prototype.processingComment = function (acao) {
  */
 Information.prototype.showComments = function () {
     const self = this;
-    document.getElementById('createUser').style.display = 'none';
     const table = document.createElement('table');
-    table.appendChild(tableLine(new User(), true));
-    this.users.forEach(p => {
+    table.appendChild(tableLine(new Comment(), true));
+    this.comments.forEach(p => {
         table.appendChild(tableLine(p, false));
     });
 
@@ -253,86 +252,84 @@ Information.prototype.showComments = function () {
     divTable.setAttribute('id', 'divTable');
     divTable.appendChild(table);
 
-    function createUserEventHandler() {
-        document.getElementById('formUser').action = 'javascript:info.processingUser("create");';
-        changePage('createUser');
+    function createCommentEventHandler() {
+        document.getElementById('formComment').action = 'javascript:info.processingComment("create");';
+        updatePage('createComment');
     }
 
-    function updateUserEventHandler() {
-        let idUser = null;
+    function updateCommentEventHandler() {
+        let idComment = null;
         for (const row of table.rows) {
             const checkBox = row.cells[0].firstChild;
             if (checkBox && checkBox.checked) {
-                idUser = row.cells[1].firstChild.nodeValue;
+                idComment = row.cells[1].firstChild.nodeValue;
                 break;
             }
         }
-        if (idUser) {
-            replaceChilds('divTable', document.createElement('div'));
-            document.getElementById('formUser').action = 'javascript:info.processingUser("update");';
-            document.getElementById('formUser').style.display = 'block';
-            document.getElementById('formUser').reset();
-            document.getElementById('id').value = idUser;
-            const user = self.users.find(i => i.id === idUser);
-            document.getElementById('username').value = person.username;
-            document.getElementById('password').value = person.password;
-            document.getElementById('email').value = person.email;
-            document.getElementById('role').value = person.role;
+        if (idComment) {
+            updatePage('createComment');
+            document.getElementById('formComment').action = 'javascript:info.processingComment("update");';
+            const comment = self.comments.find(i => i.id === idComment);
+            document.getElementById('id').value = idComment;
+            document.getElementById('titulo').value = comment.titulo;
+            document.getElementById('usernameC').value = comment.username;
+            document.getElementById('comentario').value = comment.comentario;
         }
     }
 
-    function deleteUserEventHandler() {
+    function deleteCommentEventHandler() {
         for (const row of table.rows) {
             const checkBox = row.cells[0].firstChild;
-            const idUser = row.cells[1].firstChild.nodeValue;
+            const idComment = row.cells[1].firstChild.nodeValue;
             if (checkBox && checkBox.checked) {
-                self.removeUser(idUser);
+                self.removeComment(idComment);
             }
         }
     }
-    createButton(divTable, createUserEventHandler, 'Criar novo Utilizador');
-    createButton(divTable, updateUserEventHandler, 'Editar Utilizador');
-    createButton(divTable, deleteUserEventHandler, 'Eliminar Utilizador');
-    replaceChilds('table', divTable);
-    changePage('main');
+    createButton(divTable, createCommentEventHandler, 'Adicionar novo Comentário');
+    createButton(divTable, updateCommentEventHandler, 'Editar Comentário');
+    createButton(divTable, deleteCommentEventHandler, 'Eliminar Comentário');
+    replaceChilds('table2', divTable);
+    updatePage('main2');
 };
 
+
 Information.prototype.showHomepage = function () {
-    changePage('homepage');
+    updatePage('homepage');
 }
 
 Information.prototype.showDefinicao = function () {
-    changePage('definicao');
+    updatePage('definicao');
 }
 
 Information.prototype.showPilares = function () {
-    changePage('pilares');
+    updatePage('pilares');
 }
 
 Information.prototype.showNacoesUnidas = function () {
-    changePage('nacoesUnidas');
+    updatePage('nacoesUnidas');
 }
 
 Information.prototype.showPais = function () {
-    changePage('pais');
+    updatePage('pais');
 }
 
 Information.prototype.showCampus = function () {
-    changePage('campus');
+    updatePage('campus');
 }
 
 Information.prototype.showTecnologia = function () {
-    changePage('tecnologia');
+    updatePage('tecnologia');
 }
 
 Information.prototype.showProjetos = function () {
-    changePage('projetos');
+    updatePage('projetos');
 }
 
 Information.prototype.showIdeias = function () {
-    changePage('ideias');
+    updatePage('ideias');
 }
 
 Information.prototype.showLogin = function () {
-    changePage('login');
+    updatePage('login');
 }

@@ -3,7 +3,7 @@
 /**
  * @class Estrutura com capacidade de armazenar o estado de um utilizador
  * @constructs User
- * @param {int} id 
+ * @param {String} id 
  * @param {String} username 
  * @param {String} password 
  * @param {String} email 

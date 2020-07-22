@@ -19,13 +19,13 @@ function getUsers(req, res) {
         if (err) {
             res.json({ "message": "error", "error": err });
         } else {
-            let collection = client.db('sustentabilidade').collection("users");
+            let collection = client.db('sustentabilidade').collection("user");
 
             collection.find({}, { _id: 1, username: 1, password: 1, email: 1, role: 1 }).toArray(function (err, documents) {
                 if (err) {
                     res.json({ "message": "error", "error": err });
                 } else {
-                    res.json({ "message": "success", "users": documents });
+                    res.json({ "message": "success", "user": documents });
                 }
                 client.close();
             });
@@ -46,32 +46,48 @@ function createUpdateUser(req, res) {
         if (err) {
             res.json({ "message": "error", "error": err });
         } else {
-            let collection = client.db('sustentabilidade').collection("users");
+            let collection = client.db('sustentabilidade').collection("user");
 
-            collection.updateOne(
-                {
-                    _id: new ObjectID(req.method === 'PUT' ? req.body.id : null)
-                },
-                {
-                    _id: req.body.id,
+            if (req.method === "POST") {
+                collection.insertOne({
+                    _id: new ObjectID(),
                     username: req.body.username,
                     password: req.body.password,
                     email: req.body.email,
                     role: req.body.role
                 },
-                {
-                    multi: false,
-                    upsert: true
-                },
-                function (err, response) {
-                    if (err) {
-                        res.sendStatus(404);
-                    } else {
-                        res.send(response.result);
-                    }
-                    client.close();
-                }
-            );
+                    function (err, response) {
+                        if (err) {
+                            res.sendStatus(404);
+                        } else {
+                            res.send(response.result);
+                        }
+                        client.close();
+                    });
+            } else {
+                collection.update(
+                    {
+                        _id: new ObjectID(req.params.id)
+                    },
+                    {
+                        username: req.body.username,
+                        password: req.body.password,
+                        email: req.body.email,
+                        role: req.body.role
+                    },
+                    {
+                        multi: false,
+                        upsert: false
+                    },
+                    function (err, response) {
+                        if (err) {
+                            res.sendStatus(404);
+                        } else {
+                            res.send(response.result);
+                        }
+                        client.close();
+                    });
+            }
         }
     });
 }
@@ -89,9 +105,9 @@ function removeUser(req, res) {
         if (err) {
             res.json({ "message": "error", "error": err });
         } else {
-            let collection = client.db('sustentabilidade').collection("users");
+            let collection = client.db('sustentabilidade').collection("user");
 
-            collection.remove({ _id: new ObjectID(req.params._id) }, { justOne: true }, function (err) {
+            collection.deleteOne({ _id: new ObjectID(req.params.id) }, { justOne: true }, function (err) {
                 if (err) {
                     res.sendStatus(404);
                 } else {
@@ -145,30 +161,46 @@ function createUpdateComment(req, res) {
         } else {
             let collection = client.db('sustentabilidade').collection("comments");
 
-            collection.update(
-                {
-                    _id: new ObjectID(req.method === 'PUT' ? req.body.id : null)
-                },
-                {
-                    _id: req.body.id,
+            if (req.method === "POST") {
+                collection.insertOne({
+                    _id: new ObjectID(),
                     titulo: req.body.titulo,
                     username: req.body.username,
                     comentario: req.body.comentario,
-                    data: new Date(req.body.data)
+                    data: req.body.data
                 },
-                {
-                    multi: false,
-                    upsert: true
-                },
-                function (err, response) {
-                    if (err) {
-                        res.sendStatus(404);
-                    } else {
-                        res.send(response.result);
-                    }
-                    client.close();
-                }
-            );
+                    function (err, response) {
+                        if (err) {
+                            res.sendStatus(404);
+                        } else {
+                            res.send(response.result);
+                        }
+                        client.close();
+                    });
+            } else {
+                collection.update(
+                    {
+                        _id: new ObjectID(req.params.id)
+                    },
+                    {
+                        titulo: req.body.titulo,
+                        username: req.body.username,
+                        comentario: req.body.comentario,
+                        data: req.body.data
+                    },
+                    {
+                        multi: false,
+                        upsert: false
+                    },
+                    function (err, response) {
+                        if (err) {
+                            res.sendStatus(404);
+                        } else {
+                            res.send(response.result);
+                        }
+                        client.close();
+                    });
+            }
         }
     });
 }
@@ -188,7 +220,7 @@ function removeComment(req, res) {
         } else {
             let collection = client.db('sustentabilidade').collection("comments");
 
-            collection.remove({ _id: new ObjectID(req.params._id) }, { justOne: true }, function (err) {
+            collection.deleteOne({ _id: new ObjectID(req.params.id) }, { justOne: true }, function (err) {
                 if (err) {
                     res.sendStatus(404);
                 } else {
@@ -215,7 +247,7 @@ function getContents(req, res) {
         } else {
             let collection = client.db('sustentabilidade').collection("contents");
 
-            collection.find({}, { _id: 1, informacao: 1}).toArray(function (err, documents) {
+            collection.find({}, { _id: 1, informacao: 1 }).toArray(function (err, documents) {
                 if (err) {
                     res.json({ "message": "error", "error": err });
                 } else {
@@ -242,27 +274,40 @@ function createUpdateContent(req, res) {
         } else {
             let collection = client.db('sustentabilidade').collection("contents");
 
-            collection.update(
-                {
-                    _id: new ObjectID(req.method === 'PUT' ? req.body.id : null)
-                },
-                {
-                    _id: req.body._id,
+            if (req.method === "POST") {
+                collection.insertOne({
+                    _id: new ObjectID(),
                     informacao: req.body.informacao,
                 },
-                {
-                    multi: false,
-                    upsert: true
-                },
-                function (err, response) {
-                    if (err) {
-                        res.sendStatus(404);
-                    } else {
-                        res.send(response.result);
-                    }
-                    client.close();
-                }
-            );
+                    function (err, response) {
+                        if (err) {
+                            res.sendStatus(404);
+                        } else {
+                            res.send(response.result);
+                        }
+                        client.close();
+                    });
+            } else {
+                collection.update(
+                    {
+                        _id: new ObjectID(req.params.id)
+                    },
+                    {
+                        informacao: req.body.informacao,
+                    },
+                    {
+                        multi: false,
+                        upsert: true
+                    },
+                    function (err, response) {
+                        if (err) {
+                            res.sendStatus(404);
+                        } else {
+                            res.send(response.result);
+                        }
+                        client.close();
+                    });
+            }
         }
     });
 }
@@ -282,7 +327,7 @@ function removeContent(req, res) {
         } else {
             let collection = client.db('sustentabilidade').collection("contents");
 
-            collection.remove({ _id: new ObjectID(req.params._id) }, { justOne: true }, function (err) {
+            collection.deleteOne({ _id: new ObjectID(req.params.id) }, { justOne: true }, function (err) {
                 if (err) {
                     res.sendStatus(404);
                 } else {
